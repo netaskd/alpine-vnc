@@ -7,7 +7,7 @@
 [ ! -f "/etc/ssh/ssh_host_dsa_key" ] && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
 
 # set custom ssh_config
-envsubst <etc/ssh/ssh_config >/etc/ssh/ssh_config
+envsubst <etc/ssh/ssh_config.tpl >/etc/ssh/ssh_config
 
 # prepare ssh run dir
 mkdir -p /var/run/sshd
