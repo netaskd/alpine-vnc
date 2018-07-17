@@ -8,12 +8,21 @@ Minimalistic Alpine linux desktop
 
 # Usage
 
-Start the container
+Use make file for manage it
 ```bash
-docker run -d --name alpine -p -p 5900:5900 netaskd/alpine-vnc
+$ make
+build:		 build image from source
+start:		 create the container and run it as daemon
+stop:   	 remove the container
+exec:   	 run shell inside the container
+login:  	 login to docker registry
+push:   	 push image to docker registry
+keytab:		 generate keytab for GSSAPI ssh connection
+help:   	 show this help
 ```
 
 *note Connect with your favorite vnc client
 
 User: alpine
+
 Pass: alpine
