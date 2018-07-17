@@ -1,5 +1,5 @@
-# setup background
-feh --bg-fill /etc/xdg/openbox/Gulp.png
+# setup background color and image
+feh --bg-center /etc/xdg/openbox/Gulp.png --image-bg '#020f23' --no-fehbg
 
 # run terminator
 terminator -e 'sudo /bin/bash -' -f --working-directory /home/${USER}
