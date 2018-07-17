@@ -1,36 +1,16 @@
 #!/bin/sh
 
 # generate fresh rsa key if needed
-if [ ! -f "/etc/ssh/ssh_host_rsa_key" ];then 
-  ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
-fi
+[ ! -f "/etc/ssh/ssh_host_rsa_key" ] && ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
 
 # generate fresh dsa key if needed
-if [ ! -f "/etc/ssh/ssh_host_dsa_key" ];then 
-  ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
-fi
+[ ! -f "/etc/ssh/ssh_host_dsa_key" ] && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
 
 # set custom ssh_config
 envsubst <etc/ssh/ssh_config >/etc/ssh/ssh_config
 
 # prepare ssh run dir
 mkdir -p /var/run/sshd
-
-# generate krb5cc_0 and krb5cc_1000
-[ ! -f "/tmp/krb5cc_0" ] \
-&& [ -f "/etc/krb5.keytab" ] \
-&& kinit -k ${USER}@${REALM} -t /etc/krb5.keytab -c /tmp/krb5cc_0 \
-&& cp /tmp/krb5cc_0 /tmp/krb5cc_1000 \
-&& chown ${USER}:${USER} /tmp/krb5cc_1000
-
-# periodic update krb5 cache
-[ ! -f "/etc/periodic/host-kinit.sh" ] \
-&& [ -f "/etc/krb5.keytab" ] \
-&& echo "kinit -k ${USER}@${REALM} -t /etc/krb5.keytab -c /tmp/krb5cc_0" >/etc/periodic/host-kinit.sh \
-&& echo "cp /tmp/krb5cc_0 /tmp/krb5cc_1000" >>/etc/periodic/host-kinit.sh \
-&& echo "chown ${USER}:${USER} /tmp/krb5cc_1000" >>/etc/periodic/host-kinit.sh \
-&& chmod +x /etc/periodic/host-kinit.sh \
-&& echo '*/5 	* 	* 	* 	*	/etc/periodic/host-kinit.sh' >>/etc/crontabs/root
 
 # set bashrc
 echo "PS1='\u[\W]# '" >>/root/.bashrc

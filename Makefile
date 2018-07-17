@@ -4,8 +4,8 @@ DOCKER_REPO ?= ${DOCKER_REPO:-netaskd}
 TAG ?= latest
 USER ?= alpine
 PASS ?= alpine
-REALM ?= LOCALDOMAIN
-KVNO ?= 3
+REALM ?=
+KVNO ?= 1
 RESOLUTION ?= 1920x1080
 
 .PHONY: build start stop restart
@@ -43,7 +43,14 @@ push:   ## push image to docker registry
 	@docker push $(DOCKER_REPO)/$(NAME):$(TAG) 
 
 keytab:	## generate keytab for GSSAPI ssh connection
-	@echo -en 'addent -password -p ${USER}@${REALM} -k ${KVNO} -e aes256-cts-hmac-sha1-96\n${PASS}\nwkt ./etc/krb5.keytab\n\q\n'|ktutil
+	@docker exec -it ${NAME}${PREF} bash -c \
+	'cd /etc \
+	;export REALM=${REALM} \
+	;export KVNO=${KVNO} \
+	;export USER=${USER} \
+	;export PASS=${PASS} \
+	;export CRYPTO=${CRYPTO} \
+	;/etc/gen-keytab.sh'
 
 help:   ## show this help
 	@grep -h "##" $(MAKEFILE_LIST) | grep -v grep | sed -e 's/\\$$//;s/##/\t/'
