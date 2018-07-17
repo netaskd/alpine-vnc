@@ -1,0 +1,56 @@
+[global_config]
+  handle_size = 1
+  enabled_plugins = CustomCommandsMenu, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
+  title_transmit_fg_color = "#FFFFFF"
+  geometry_hinting = False
+  title_receive_bg_color = "#0076C9"
+  title_transmit_bg_color = "#000161"
+  title_receive_fg_color = "#FFFFFF"
+  title_inactive_bg_color = "#C0BEBF"
+[keybindings]
+  cycle_prev = <Ctrl><Alt>Tab
+  search = <Ctrl>f
+  copy = <Ctrl>c
+  paste = <Ctrl>v
+  resize_up = <Ctrl>Up
+  resize_left = <Ctrl>Left
+  split_horiz = <Alt>g
+  close_term = <Alt>q
+  split_vert = <Alt>v
+  go_next = <Ctrl>Tab
+  resize_right = <Ctrl>Right
+  resize_down = <Ctrl>Down
+[profiles]
+  [[default]]
+    force_no_bell = True
+    background_type = image
+    cursor_color = "#f9f9ff"
+    scroll_background = False
+    font = Terminus 12
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    background_image = .config/terminator/koja.jpg
+    custom_command = sudo /bin/bash -
+    foreground_color = "#ffffff"
+    use_custom_command = True
+    show_titlebar = False
+    color_scheme = green_on_black
+    copy_on_selection = True
+    audible_bell = True
+    login_shell = True
+    urgent_bell = True
+    use_system_font = False
+    autoclean_groups = False
+    visible_bell = True
+    background_darkness = 0.1
+    scrollback_lines = 10000
+    icon_bell = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = TEST
+[plugins]
