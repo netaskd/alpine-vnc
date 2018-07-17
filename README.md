@@ -1,6 +1,6 @@
 # About
 
-Minimalistic Alpine linux desktop 
+Minimalistic Alpine linux desktop inside docker container
 * vnc server as remote
 * uses openbox as WM 
 * Terminator as terminal client
