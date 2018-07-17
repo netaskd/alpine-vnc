@@ -4,21 +4,21 @@ DOCKER_REPO ?= ${DOCKER_REPO:-netaskd}
 TAG ?= latest
 USER ?= alpine
 PASS ?= alpine
-REALM ?=
+REALM ?= LOCALDOMAIN
 KVNO ?= 1
 RESOLUTION ?= 1920x1080
 
 .PHONY: build start stop restart
 
 all: help
-restart: stop start
+restart: stop start keytab
 
 build:	## build image from source
 	@docker build --build-arg USER=${USER} --build-arg PASS=${PASS} -t ${DOCKER_REPO}/${NAME}:${TAG} .
 	@docker rmi -f $(shell docker images -qf 'dangling=true') >/dev/null 2>&1 || true
 
 start:	## create the container and run it as daemon
-	docker run -d \
+	@docker run -d \
 	--restart=always \
 	--hostname=${NAME} \
 	-v /etc/localtime:/etc/localtime:ro \
@@ -28,10 +28,10 @@ start:	## create the container and run it as daemon
 	-e PASS=${PASS} \
 	-e REALM=${REALM} \
 	-e RESOLUTION=${RESOLUTION} \
-	${DOCKER_REPO}/${NAME}:${TAG}
+	${DOCKER_REPO}/${NAME}:${TAG} >/dev/null 2>&1
 
 stop:   ## remove the container
-	@docker rm -fv ${NAME}${PREF} || true
+	@docker rm -fv ${NAME}${PREF} >/dev/null 2>&1 || true
 
 exec:   ## run shell inside the container
 	@docker exec -it ${NAME}${PREF} bash
@@ -44,13 +44,12 @@ push:   ## push image to docker registry
 
 keytab:	## generate keytab for GSSAPI ssh connection
 	@docker exec -it ${NAME}${PREF} bash -c \
-	'cd /etc \
-	;export REALM=${REALM} \
-	;export KVNO=${KVNO} \
-	;export USER=${USER} \
-	;export PASS=${PASS} \
-	;export CRYPTO=${CRYPTO} \
-	;/etc/gen-keytab.sh'
+	'REALM=${REALM} \
+	KVNO=${KVNO} \
+	USER=${USER} \
+	PASS=${PASS} \
+	CRYPTO=${CRYPTO} \
+	/etc/gen-keytab.sh'
 
 help:   ## show this help
 	@grep -h "##" $(MAKEFILE_LIST) | grep -v grep | sed -e 's/\\$$//;s/##/\t/'
