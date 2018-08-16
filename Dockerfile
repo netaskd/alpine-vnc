@@ -7,8 +7,8 @@ ARG PASS=${PASS:-alpine}
 ADD apk /apk
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk --update --no-cache add \
-	xset xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal \
-	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard \
+	xset less xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal mc \
+	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcompat \
 	setxkbmap util-linux dbus dbus-x11 tcpdump ttf-freefont krb5 bind-tools \
 	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium ansible \
 	xf86-input-keyboard sudo terminus-font openbox py2-vte bash vim numix-themes-gtk2 \
