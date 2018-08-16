@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.8
 MAINTAINER netaskd@gmail.com
 
 ARG USER=${USER:-alpine}
@@ -10,7 +10,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	xset less xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal mc \
 	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcompat \
 	setxkbmap util-linux dbus dbus-x11 tcpdump ttf-freefont krb5 bind-tools \
-	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium ansible \
+	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium ansible openntpd \
 	xf86-input-keyboard sudo terminus-font openbox py2-vte bash vim numix-themes-gtk2 \
 	&& apk --allow-untrusted --no-cache add /apk/*.apk \
 	&& rm -rf /tmp/* /var/cache/apk/*
