@@ -12,6 +12,7 @@
   inactive_color_offset = 0.99
   title_use_system_font = False
   window_state = fullscreen
+  tab_position = hidden
 [keybindings]
   close_term = <Alt>q
   copy = <Ctrl>c
@@ -25,6 +26,7 @@
   search = <Ctrl>f
   split_horiz = <Alt>minus
   split_vert = <Alt>backslash
+  new_tab = <Primary>F12
 [layouts]
   [[default]]
     [[[child1]]]
