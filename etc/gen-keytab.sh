@@ -8,9 +8,9 @@ KVNO=${KVNO:-1}
 [ -z $(which ktutil) ] && echo "ktutil is not found. please add krb5-workstation packet" && exit 1
 
 # test variables
-[[ "${REALM}" == "LOCALDOMAIN" ]] && echo "You have to set vars: USER, REALM, KVNO, PASS before run it target" && exit 127
-[[ "$USER" == "alpine" ]] && echo "please set USER variable to domain username" && exit 1
-[[ "$PASS" == "alpine" ]] && echo -ne "Enter domain password: " && read -s PASS && echo -ne "\n"
+[[ "${REALM}" == "LOCALDOMAIN" || "${REALM}" == "" ]] && echo "You have to set vars: USER, REALM, KVNO, PASS before run it target" && exit 127
+[[ "$USER" == "alpine" || "${USER}" == "" ]] && echo "please set USER variable to domain username" && exit 1
+[[ "$PASS" == "alpine" || "${PASS}" == "" ]] && echo -ne "Enter domain password: " && read -s PASS && echo -ne "\n"
 
 # remove old file
 [ -f /etc/krb5.keytab ] && rm -f /etc/krb5.keytab
