@@ -7,13 +7,16 @@ ARG PASS=${PASS:-alpine}
 ADD apk /apk
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk --update --no-cache add \
-	xset less xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal mc \
-	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcompat \
-	setxkbmap util-linux dbus dbus-x11 tcpdump ttf-freefont krb5 bind-tools \
-	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium ansible openntpd \
-	xf86-input-keyboard sudo terminus-font openbox py2-vte bash vim numix-themes-gtk2 \
+	xset less xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal python-dev mc \
+	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcc gcompat musl-dev \
+	setxkbmap util-linux dbus dbus-x11 tcpdump ttf-freefont krb5 bind-tools make libffi-dev \
+	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium py-pip openntpd openssl-dev \
+	xf86-input-keyboard sudo terminus-font openbox py2-vte bash vim numix-themes-gtk2 tcpdump curl nmap \
 	&& apk --allow-untrusted --no-cache add /apk/*.apk \
-	&& rm -rf /tmp/* /var/cache/apk/*
+	&& rm -rf /tmp/* /var/cache/apk/* \
+	&& pip install --upgrade pip \
+	&& pip install ansible \
+	&& rm -rf ~/.cache/pip
 
 RUN addgroup ${USER} \
 	&& adduser  -G ${USER} -s /bin/bash -D ${USER} \
