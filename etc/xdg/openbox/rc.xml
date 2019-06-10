@@ -42,37 +42,37 @@
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>8</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="InactiveWindow">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>8</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuHeader">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>12</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="MenuItem">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>12</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="ActiveOnScreenDisplay">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>9</size>
     <weight>bold</weight>
     <slant>normal</slant>
   </font>
   <font place="InactiveOnScreenDisplay">
-    <name>xos4 Terminus</name>
+    <name>Terminus</name>
     <size>9</size>
     <weight>bold</weight>
     <slant>normal</slant>

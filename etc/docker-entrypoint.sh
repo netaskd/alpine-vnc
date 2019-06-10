@@ -37,7 +37,7 @@ ln -sf /usr/bin/vim /usr/bin/vi \
 # set gtk2 theme
 echo 'gtk-icon-theme-name= "Tangerine"' >/home/${USER}/.gtkrc-2.0 \
 && echo 'gtk-theme-name= "Numix"' >>/home/${USER}/.gtkrc-2.0 \
-&& echo 'gtk-font-name = "xos4 Terminus 12"' >>/home/${USER}/.gtkrc-2.0
+&& echo 'gtk-font-name = "Terminus 12"' >>/home/${USER}/.gtkrc-2.0
 
 # generate machine-id
 uuidgen > /etc/machine-id

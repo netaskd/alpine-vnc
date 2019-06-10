@@ -3,7 +3,7 @@
   enabled_plugins = ActivityWatch, CustomCommandsMenu, TestPlugin, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, MavenPluginURLHandler, LaunchpadBugURLHandler
   handle_size = 1
   sticky = False
-  title_font = xos4 Terminus 12
+  title_font = Terminus 12
   title_inactive_bg_color = "#C0BEBF"
   title_receive_bg_color = "#0076C9"
   title_receive_fg_color = "#FFFFFF"
@@ -47,7 +47,7 @@
     cursor_color = "#aaaaaa"
     custom_command = sudo /bin/bash -
     use_custom_command = True
-    font = xos4 Terminus 12
+    font = Terminus 12
     force_no_bell = True
     foreground_color = "#ffffff"
     icon_bell = False
