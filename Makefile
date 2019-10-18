@@ -7,6 +7,7 @@ PASS ?= alpine
 REALM ?= LOCALDOMAIN
 KVNO ?= 1
 RESOLUTION ?= 1920x1080
+PORT ?= 5900
 
 .PHONY: build start stop restart
 
@@ -22,7 +23,7 @@ start:	## create the container and run it as daemon
 	--restart=always \
 	--hostname=${NAME} \
 	-v /etc/localtime:/etc/localtime:ro \
-	-p 5900:5900 \
+	-p ${PORT}:5900 \
 	--name ${NAME}${PREF} \
 	-e USER=${USER} \
 	-e PASS=${PASS} \

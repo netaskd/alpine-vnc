@@ -16,12 +16,15 @@ KVNO=${KVNO:-1}
 [ -f /etc/krb5.keytab ] && rm -f /etc/krb5.keytab
 
 # generate new file
-ktutil <<EOF 2>/dev/null
-addent -password -p ${USER}@${REALM} -k ${KVNO} -e ${CRYPTO}
-${PASS}
-wkt /etc/krb5.keytab
-exit
-EOF
+#ktutil <<EOF 2>/dev/null
+#addent -password -p ${USER}@${REALM} -k ${KVNO} -e ${CRYPTO}
+#${PASS}
+#wkt /etc/krb5.keytab
+#exit
+#EOF
+printf "%b" \
+"addent -password -p ${USER}@${REALM} -k ${KVNO} -e ${CRYPTO}\n${PASS}\nwrite_kt /etc/krb5.keytab" \
+| ktutil
 
 # show list
 klist -Kekt /etc/krb5.keytab
