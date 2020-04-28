@@ -8,7 +8,7 @@ ADD apk /apk
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk --update --no-cache add \
 	xset less xsetroot xvfb x11vnc thunar-volman feh git xfce4-terminal python-dev mc \
-	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcc gcompat musl-dev \
+	slim xf86-input-synaptics xf86-input-mouse xf86-input-keyboard gcc gcompat musl-dev sshpass \
 	setxkbmap util-linux dbus dbus-x11 tcpdump ttf-freefont krb5 bind-tools make libffi-dev k3s \
 	xauth supervisor x11vnc util-linux dbus ttf-freefont chromium py-pip openntpd openssl-dev ansible \
 	xf86-input-keyboard sudo terminus-font openbox py2-vte bash vim numix-themes-gtk2 tcpdump curl nmap \
